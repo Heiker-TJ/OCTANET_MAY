@@ -1,0 +1,89 @@
+package ATMMachine;
+import java.util.*;
+class ATM
+{
+   float balance;
+   int PIN=1269;
+   Scanner sc=new Scanner(System.in);
+   public void checkpin()
+   {
+    int yourpin;
+    System.out.println("ENter your pin");
+    
+    yourpin=sc.nextInt();
+    if(yourpin==PIN)
+    {
+        menu();
+    }
+    else
+    {
+        System.out.println("INVALID PIN!!!Enter again!!!");
+        checkpin();
+    }
+   }
+   public void menu()
+   {
+    System.out.println("Choose an option");
+    System.out.println("1.check balance");
+    System.out.println("2.Deposit Money");
+    System.out.println("3.Withdraw Money");
+    System.out.println("4.Exit");
+    int choice=sc.nextInt();
+    if(choice==1)
+    {
+        checkbalance();
+
+    }
+    else if(choice==2)
+    {
+        depositmoney();
+
+    }
+    else if(choice==3)
+    {   
+        withdrawmoney();
+        
+    }
+    else{
+        System.out.println("Exiting..... ");
+    
+    }
+   }
+   public void checkbalance()
+   {
+    System.out.println("Your balance is");
+        System.out.println(balance);
+        menu();
+   }
+   public void depositmoney()
+   {    
+        System.out.println("Enter amount to be deposited:");
+        int deposit=sc.nextInt();
+        balance=balance+deposit;
+        System.out.println("Money has been deposited");
+        menu();
+   }
+   public void withdrawmoney()
+   {
+        System.out.println("Enter amount to be withdrawn:");
+        int withdraw=sc.nextInt();
+        if(withdraw<balance){
+            balance=balance-withdraw;
+            System.out.println("Money has been withdrawn successfully");
+        }
+        else
+        {
+            System.out.println("Insufficient Balance");
+        }
+        menu();
+   }
+}
+
+public class ATMMachine {
+    public static void main(String[] args) throws Exception {
+        ATM a=new ATM();
+        a.checkpin();
+        
+        
+    }
+}
